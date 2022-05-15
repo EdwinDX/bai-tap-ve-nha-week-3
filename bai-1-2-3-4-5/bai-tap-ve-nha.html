@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Xóa phần tử bất kỳ có trong mảng</title>
+    <title>Bài tập về nhà</title>
 </head>
 <body>
 <p id="inputPosition"></p>
@@ -19,6 +19,12 @@
 <input type="number" id="valuecheck" placeholder="Nhập giá trị cần kiểm tra trong mảng">
 <input type="button" value="Kiểm tra" onclick="checkvalue()">
 <p id="showaftercheck"></p>
+<p>Sắp xếp thứ tự từ bé đến lớn</p>
+<input type="button" value="Sắp xếp" onclick="mintomax()">
+<p id="showmintomax"></p>
+<p>Sắp xếp thứ tự từ lớn đến bé</p>
+<input type="button" value="Sắp xếp" onclick="maxtomin()">
+<p id="showmaxtomin"></p>
 <script>
   let arr = new Array();
   document.getElementById('inputPosition').innerHTML = 'Nhập giá trị phần tử ở vị trí '+arr.length+' trong mảng';
@@ -72,6 +78,32 @@
       if (check===false) {
           document.getElementById('showaftercheck').innerHTML = 'Không có phần tử nào trong mảng có giá trị là '+valuecheck;
       }
+  }
+  function mintomax() {
+      let index;
+      for (let i=0;i<arr.length;i++) {
+          for (let j=0;j<arr.length;j++) {
+              if (arr[j]>arr[j+1]) {
+                  index=arr[j];
+                  arr[j]=arr[j+1];
+                  arr[j+1]=index;
+              }
+          }
+      }
+      document.getElementById('showmintomax').innerHTML = arr;
+  }
+  function maxtomin() {
+      let index;
+      for (let i=0;i<arr.length;i++) {
+          for (let j=0;j<arr.length;j++) {
+              if (arr[j]<arr[j+1]) {
+                  index=arr[j];
+                  arr[j]=arr[j+1];
+                  arr[j+1]=index;
+              }
+          }
+      }
+      document.getElementById('showmaxtomin').innerHTML = arr;
   }
 </script>
 </body>
