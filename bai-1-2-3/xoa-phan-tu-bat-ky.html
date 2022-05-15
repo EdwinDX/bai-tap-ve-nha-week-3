@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xóa phần tử bất kỳ có trong mảng</title>
+</head>
+<body>
+<p id="inputPosition"></p>
+<input type="number" id="input" placeholder="Nhập giá trị phần tử">
+<input type="button" value="Xác nhận" onclick="input()">
+<p id="show"></p>
+<input type="number" id="remove" placeholder="Nhập vị trí phần tử cần xóa">
+<input type="button" value="Xóa" onclick="remove()">
+<p id="showafterremove"></p>
+<input type="number" id="add" placeholder="Nhập vị trí phần tử cần thêm">
+<input type="number" id="valueadd" placeholder="Nhập giá trị của phần tử cần thêm">
+<input type="button" value="Thêm" onclick="add()">
+<p id="showafteradd"></p>
+<input type="number" id="valuecheck" placeholder="Nhập giá trị cần kiểm tra trong mảng">
+<input type="button" value="Kiểm tra" onclick="checkvalue()">
+<p id="showaftercheck"></p>
+<script>
+  let arr = new Array();
+  document.getElementById('inputPosition').innerHTML = 'Nhập giá trị phần tử ở vị trí '+arr.length+' trong mảng';
+  function input() {
+    let value = +document.getElementById('input').value;
+    arr[arr.length] = value;
+    document.getElementById('show').innerHTML = arr;
+    document.getElementById('input').value = "";
+    document.getElementById('inputPosition').innerHTML = 'Nhập giá trị phần tử ở vị trí '+arr.length+' trong mảng';
+  }
+  function remove() {
+    let newarrRemove = new Array();
+    let removepos = +document.getElementById('remove').value;
+    for (let i = 0;i < arr.length;i++) {
+      if (i<removepos) {
+        newarrRemove[i]=arr[i];
+      }
+      if (i>removepos) {
+        newarrRemove[i-1]=arr[i];
+      }
+    }
+    document.getElementById("showafterremove").innerHTML = newarrRemove;
+  }
+  function add() {
+    let newarrAdd = new Array();
+    let addpos = +document.getElementById('add').value;
+    let addvalue = +document.getElementById('valueadd').value;
+    for (let i = 0;i < arr.length;i++) {
+      if (i<addpos) {
+        newarrAdd[i]=arr[i];
+      }
+      else if (i>addpos) {
+        newarrAdd[i+1]=arr[i];
+      }
+      else {
+        newarrAdd[i]= addvalue;
+        newarrAdd[i+1]=arr[i];
+      }
+    }
+    document.getElementById("showafteradd").innerHTML = newarrAdd;
+  }
+  function checkvalue() {
+      let check = false;
+      let valuecheck = +document.getElementById('valuecheck').value;
+      for (let i=0;i<arr.length;i++) {
+          if (arr[i]===valuecheck) {
+              document.getElementById('showaftercheck').innerHTML = 'Vị trí có giá trị '+valuecheck+' là '+i;
+              check = true;
+          }
+      }
+      if (check===false) {
+          document.getElementById('showaftercheck').innerHTML = 'Không có phần tử nào trong mảng có giá trị là '+valuecheck;
+      }
+  }
+</script>
+</body>
+</html>
